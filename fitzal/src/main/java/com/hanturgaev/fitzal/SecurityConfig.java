@@ -18,8 +18,7 @@ public class SecurityConfig {
         http.csrf(CsrfConfigurer::disable)
                 .authorizeHttpRequests(auth ->auth
                         .requestMatchers("/login","/register").permitAll()
-                        .requestMatchers("/events/create").hasAnyAuthority( "ROLE_MODERATOR")
-                        .requestMatchers("/events").hasAnyAuthority("ROLE_CLIENT", "ROLE_MODERATOR")
+                        .requestMatchers("/events/create").hasAnyAuthority("ROLE_MODERATOR")
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login

@@ -1,4 +1,6 @@
 package com.hanturgaev.fitzal.controllers;
+import com.hanturgaev.fitzal.models.User;
+import com.hanturgaev.fitzal.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.*;
@@ -20,6 +22,8 @@ import java.util.List;
 @Controller
 public class HomeController {
 
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/")
     public String index(){
@@ -49,10 +53,28 @@ public class HomeController {
     }
 
 
+    @PostMapping(value = "/register")
+    public String register(@ModelAttribute User user, HttpServletRequest request,
+                           @CurrentSecurityContext SecurityContext securityContext) {
+        userService.save(user);
+
+        //Program authentication
+        Authentication authentication = new UsernamePasswordAuthenticationToken(
+                user, user.getPassword(), user.getAuthorities());
+
+        securityContext.setAuthentication(authentication);
+
+        // Create a new session and add the security context.
+        HttpSession session = request.getSession(true);
+        session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+        return "redirect:/";
+    }
+
     @GetMapping(value = "/register")
     public String goRegister() {
         return "register";
     }
+
 
 //    @PostMapping(value = "/register")
 //    public String register(@ModelAttribute User user, HttpServletRequest request,

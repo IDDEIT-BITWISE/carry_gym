@@ -8,9 +8,9 @@ import java.util.List;
 
 @Repository
 public interface FeedbackRepository extends JpaRepository<Feedback, Long> {
-    // Найти отзывы по клиенту
     List<Feedback> findByClientId(Long clientId);
 
-    // Найти отзывы по событию
     List<Feedback> findByEventId(Long eventId);
+
+
 }

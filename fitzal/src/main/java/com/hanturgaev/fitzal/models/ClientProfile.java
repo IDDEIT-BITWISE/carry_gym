@@ -14,6 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClientProfile {
-    private List<Long> eventIds; // Список ID событий, в которых участвует клиент
-    private List<Long> feedbackIds; // Список ID отзывов, оставленных клиентом
+    private List<Long> eventIds;
+    private List<Long> feedbackIds;
 }

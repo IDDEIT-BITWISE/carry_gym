@@ -32,7 +32,7 @@ public class Event {
 
     @ManyToOne
     @JoinColumn(name = "trainer_id", nullable = false)
-    private User trainer;
+    private Trainer trainer;
 
     @ManyToMany
     @JoinTable(
@@ -41,4 +41,8 @@ public class Event {
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private List<User> participants;
+
+    @OneToMany
+    @JoinColumn(name = "id")
+    private List<Feedback> feedbacks;
 }

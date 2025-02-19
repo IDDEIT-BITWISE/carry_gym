@@ -25,9 +25,6 @@ public class Feedback {
     @Column(nullable = false)
     private int rating;
 
-    @Column(nullable = false)
-    private Date date;
-
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
     private User client; // Клиент, который оставил отзыв
