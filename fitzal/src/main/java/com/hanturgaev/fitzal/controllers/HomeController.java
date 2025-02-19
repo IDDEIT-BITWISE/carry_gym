@@ -84,6 +84,7 @@ public class HomeController {
     }
     @GetMapping(value = "/events")
     public String goEvents() {
+
         return "events";
     }
 
@@ -93,6 +94,8 @@ public class HomeController {
         model.addAttribute("trainer", new Trainer());
         return "trainers";
     }
+
+
 
 
 

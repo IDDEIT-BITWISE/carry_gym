@@ -48,6 +48,14 @@ public class EventService {
         return eventRepository.findAll();
     }
 
+
+    @Transactional
+    public List<Event> getAllEventsByDay(String day) {
+        return eventRepository.findByDay(day);
+    }
+
+
+
     @Transactional
     public void deleteEvent(Long id) {
         eventRepository.deleteById(id);

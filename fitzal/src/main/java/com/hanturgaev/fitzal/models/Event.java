@@ -28,7 +28,10 @@ public class Event {
     private String description;
 
     @Column(nullable = false)
-    private Date date;
+    private String time;
+
+    @Column
+    private String day;
 
     @ManyToOne
     @JoinColumn(name = "trainer_id", nullable = false)
