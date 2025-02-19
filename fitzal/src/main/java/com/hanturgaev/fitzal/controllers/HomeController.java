@@ -1,6 +1,8 @@
 package com.hanturgaev.fitzal.controllers;
+import com.hanturgaev.fitzal.models.Event;
 import com.hanturgaev.fitzal.models.Trainer;
 import com.hanturgaev.fitzal.models.User;
+import com.hanturgaev.fitzal.services.EventService;
 import com.hanturgaev.fitzal.services.TrainerService;
 import com.hanturgaev.fitzal.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,6 +31,9 @@ public class HomeController {
 
     @Autowired
     private TrainerService trainerService;
+
+    @Autowired
+    private EventService eventService;
 
     @GetMapping("/")
     public String index(){
@@ -84,6 +89,7 @@ public class HomeController {
     }
     @GetMapping(value = "/events")
     public String goEvents() {
+        List<List<Event>> res = (eventService.getAllEventsGroupByDay());
 
         return "events";
     }

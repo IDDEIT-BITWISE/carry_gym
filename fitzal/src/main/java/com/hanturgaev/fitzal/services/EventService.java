@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -54,11 +55,17 @@ public class EventService {
         return eventRepository.findByDay(day);
     }
 
-
-
     @Transactional
     public void deleteEvent(Long id) {
         eventRepository.deleteById(id);
+    }
+
+    public List<List<Event>> getAllEventsGroupByDay() {
+        List<List<Event>> result = new ArrayList<>();
+        for (int i=1; i <= 7; i++) {
+            result.add(getAllEventsByDay(String.valueOf(i)));
+        }
+        return result;
     }
 
 }
