@@ -1,4 +1,4 @@
-package com.hanturgaev.fitzal.model;
+package com.hanturgaev.fitzal.models;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -34,9 +34,6 @@ public class User implements UserDetails {
     private String lastName;
 
     @Embedded
-    private TrainerProfile trainerProfile;
-
-    @Embedded
     private ClientProfile clientProfile;
 
     @Column
@@ -60,4 +57,5 @@ public class User implements UserDetails {
     public String getUsername() {
         return this.email;
     }
+
 }

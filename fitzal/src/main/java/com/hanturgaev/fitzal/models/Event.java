@@ -1,4 +1,4 @@
-package com.hanturgaev.fitzal.model;
+package com.hanturgaev.fitzal.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Event {
     @Id
+    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
