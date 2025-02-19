@@ -19,7 +19,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth ->auth
                         .requestMatchers("/login","/register").permitAll()
                         .requestMatchers("/events/create").hasAnyAuthority( "ROLE_MODERATOR")
-                        .requestMatchers("/events")
+                        .requestMatchers("/events").hasAnyAuthority("ROLE_CLIENT", "ROLE_MODERATOR")
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
