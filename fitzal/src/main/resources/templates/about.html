@@ -22,8 +22,6 @@
         background-color: #f8f9fa;
       }
       .header {
-        background-color: #6d7985;
-        color: white;
         padding: 20px 0;
         text-align: center;
       }
@@ -62,6 +60,9 @@
                   <a class="nav-link" href="/news">Новости</a>
               </li>
               <li class="nav-item">
+                  <a class="nav-link" href="/trainers">Тренера</a>
+              </li>
+              <li class="nav-item">
                   <a class="nav-link" href="/events">Мероприятия</a>
               </li>
               <li sec:authorize="!isAuthenticated()" class="nav-item">
@@ -75,7 +76,6 @@
   </nav>
     <div class="header">
       <h1>О нас</h1>
-      <p>Фитнес-клуб FitZal</p>
     </div>
 
     <div class="container mt-4">
