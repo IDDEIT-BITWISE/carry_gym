@@ -48,4 +48,9 @@ public class EventService {
         return eventRepository.findAll();
     }
 
+    @Transactional
+    public void deleteEvent(Long id) {
+        eventRepository.deleteById(id);
+    }
+
 }

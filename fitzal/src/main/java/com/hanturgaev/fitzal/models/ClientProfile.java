@@ -15,5 +15,4 @@ import java.util.List;
 @NoArgsConstructor
 public class ClientProfile {
     private List<Long> eventIds;
-    private List<Long> feedbackIds;
 }

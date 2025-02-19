@@ -95,9 +95,9 @@
     <div class="row">
         <div class="col-md-4" th:each="trainer : ${trainers}">
             <div class="card trainer-card">
-                <img src="${trainer.photoPath}" alt="Тренер 1" class="trainer-photo">
+                <img th:src="${trainer.photoPath}" alt="Тренер 1" class="trainer-photo">
                 <div class="card-body">
-                    <h5 class="card-title" th:text="${trainer.firstName}"></h5>
+                    <h5 class="card-title" th:text="${trainer.firstName+' '+trainer.lastName}"></h5>
                     <h6 class="card-subtitle mb-2 text-muted" th:text="${trainer.specialization}"></h6>
                     <p class="card-text" th:text="${trainer.bio}">Анна - сертифицированный персональный тренер с более чем 5-летним опытом работы. Она поможет вам достичь ваших фитнес-целей и сделает процесс тренировок увлекательным.</p>
                 </div>

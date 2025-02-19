@@ -42,7 +42,5 @@ public class Event {
     )
     private List<User> participants;
 
-    @OneToMany
-    @JoinColumn(name = "id")
-    private List<Feedback> feedbacks;
+
 }
