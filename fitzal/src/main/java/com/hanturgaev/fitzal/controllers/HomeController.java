@@ -88,6 +88,9 @@ public class HomeController {
     }
 
 
+
+
+
 //    @PostMapping(value = "/register")
 //    public String register(@ModelAttribute User user, HttpServletRequest request,
 //                           @CurrentSecurityContext SecurityContext securityContext) {
