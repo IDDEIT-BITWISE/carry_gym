@@ -23,9 +23,12 @@ public class TrainerService {
         trainerRepository.save(trainer);
     }
 
+    @Transactional
     public List<Trainer> getAllTrainers() {
         return trainerRepository.findAll();
     }
+
+
 
 
 
