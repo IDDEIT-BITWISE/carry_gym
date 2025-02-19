@@ -25,6 +25,9 @@ public class Trainer {
     @Column
     private String specialization;
 
+    @Column(name = "photo_path")
+    private String photoPath;
+
     @Column(name = "first_name")
     private String firstName;
 
