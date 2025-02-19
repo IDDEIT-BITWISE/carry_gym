@@ -36,4 +36,9 @@ public class EventService {
         eventRepository.save(event);
     }
 
+    @Transactional
+    public void createEvent(Event event) {
+
+    }
+
 }

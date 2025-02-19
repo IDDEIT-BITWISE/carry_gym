@@ -58,13 +58,11 @@ public class HomeController {
                            @CurrentSecurityContext SecurityContext securityContext) {
         userService.save(user);
 
-        //Program authentication
         Authentication authentication = new UsernamePasswordAuthenticationToken(
                 user, user.getPassword(), user.getAuthorities());
 
         securityContext.setAuthentication(authentication);
 
-        // Create a new session and add the security context.
         HttpSession session = request.getSession(true);
         session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
         return "redirect:/";
@@ -74,25 +72,5 @@ public class HomeController {
     public String goRegister() {
         return "register";
     }
-
-
-//    @PostMapping(value = "/register")
-//    public String register(@ModelAttribute User user, HttpServletRequest request,
-//                           @CurrentSecurityContext SecurityContext securityContext) {
-//        userService.save(user);
-//
-//        //Program authentication
-//        Authentication authentication = new UsernamePasswordAuthenticationToken(
-//                user, user.getPassword(), user.getAuthorities());
-//
-//        securityContext.setAuthentication(authentication);
-//
-//        // Create a new session and add the security context.
-//        HttpSession session = request.getSession(true);
-//        session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
-//        return "redirect:/";
-//    }
-
-
 
 }

@@ -15,7 +15,7 @@ VALUES
 
 INSERT INTO feedbacks (client_id, event_id, rating, comment)
 VALUES
-    (1,1, 5,'это пиздец'),
+    (1,1,5,'это пиздец'),
     (2,1,1,'это ахуенно');
 -- Добавление участников в события
 INSERT INTO event_participants (event_id, user_id)
