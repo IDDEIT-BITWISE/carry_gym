@@ -6,10 +6,14 @@ import com.hanturgaev.fitzal.repositories.EventRepository;
 import com.hanturgaev.fitzal.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+
 
 @Service
 public class EventService {
@@ -49,7 +53,6 @@ public class EventService {
         return eventRepository.findAll();
     }
 
-
     @Transactional
     public List<Event> getAllEventsByDay(String day) {
         return eventRepository.findByDay(day);
@@ -63,8 +66,13 @@ public class EventService {
     public List<List<Event>> getAllEventsGroupByDay() {
         List<List<Event>> result = new ArrayList<>();
         for (int i=1; i <= 7; i++) {
-            result.add(getAllEventsByDay(String.valueOf(i)));
+            List<Event> eventsByDay = getAllEventsByDay(String.valueOf(i));
+            eventsByDay.sort(Comparator.comparing(event -> LocalTime.parse(event.getTime())));
+            result.add(eventsByDay);
         }
+
+
+
         return result;
     }
 

@@ -32,5 +32,6 @@ public class UserService implements UserDetailsService {
         user.setRole(UserRole.CLIENT_ROLE);
         user.setPassword("{noop}"+user.getPassword());
         userRepository.save(user);
+
     }
 }
