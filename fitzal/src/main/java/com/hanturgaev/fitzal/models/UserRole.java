@@ -1,4 +1,4 @@
-package com.hanturgaev.fitzal.model;
+package com.hanturgaev.fitzal.models;
 
 
 public enum UserRole {

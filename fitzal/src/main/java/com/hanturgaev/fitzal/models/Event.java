@@ -1,4 +1,4 @@
-package com.hanturgaev.fitzal.model;
+package com.hanturgaev.fitzal.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

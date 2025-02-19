@@ -1,7 +1,7 @@
-package com.hanturgaev.fitzal.repository;
+package com.hanturgaev.fitzal.repositories;
 
-import com.hanturgaev.fitzal.model.User;
-import com.hanturgaev.fitzal.model.UserRole;
+import com.hanturgaev.fitzal.models.User;
+import com.hanturgaev.fitzal.models.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
