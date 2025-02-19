@@ -6,7 +6,8 @@ VALUES
 
 INSERT INTO trainers (bio, specialization, first_name, last_name)
 VALUES
-    ('сидел по 105', 'алкаш', 'Фить-Фить', 'Пкрлоь');
+    ('сидел по 105', 'алкаш', 'Фить-Фить', 'Пкрлоь'),
+    ('пацан из белореченска', 'баксёр', 'Андрей', 'Алексеев');
 -- Добавление начальных событий
 INSERT INTO events (title, description, date, trainer_id)
 VALUES

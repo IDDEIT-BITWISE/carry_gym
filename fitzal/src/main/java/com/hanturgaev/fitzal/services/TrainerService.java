@@ -2,8 +2,11 @@ package com.hanturgaev.fitzal.services;
 
 import com.hanturgaev.fitzal.models.Trainer;
 import com.hanturgaev.fitzal.repositories.TrainerRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TrainerService {
@@ -15,8 +18,13 @@ public class TrainerService {
         this.trainerRepository = trainerRepository;
     }
 
+    @Transactional
     public void createTrainer(Trainer trainer) {
         trainerRepository.save(trainer);
+    }
+
+    public List<Trainer> getAllTrainers() {
+        return trainerRepository.findAll();
     }
 
 
