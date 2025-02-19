@@ -31,7 +31,7 @@ public class Event {
 
     @ManyToOne
     @JoinColumn(name = "trainer_id", nullable = false)
-    private User trainer; // Тренер, который проводит событие
+    private User trainer;
 
     @ManyToMany
     @JoinTable(
@@ -39,5 +39,5 @@ public class Event {
             joinColumns = @JoinColumn(name = "event_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    private List<User> participants; // Список пользователей, участвующих в событии
+    private List<User> participants;
 }
