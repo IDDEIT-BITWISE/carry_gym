@@ -87,6 +87,7 @@ public class HomeController {
     public String goAbout() {
         return "about";
     }
+
     @GetMapping(value = "/events")
     public String goEvents() {
         List<List<Event>> res = (eventService.getAllEventsGroupByDay());

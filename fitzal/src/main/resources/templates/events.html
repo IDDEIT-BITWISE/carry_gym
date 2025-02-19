@@ -34,8 +34,12 @@
           background-color: #343a40;
           color: white;
         }
-        .event-card {
+        h5{
             margin-bottom: 30px;
+        }
+        .event-card {
+            height: 300px;
+            margin-bottom: 10px;
             border-radius: 10px;
             overflow: hidden;
             transition: transform 0.2s;
@@ -89,93 +93,86 @@
 
     <div class="row">
 
-        <!-- Понедельник -->
-        <div class="col text-center">
+        <div class="col text-center" th:each="event : ${events[0]}">
             <h5>Понедельник</h5>
             <div class="card event-card">
                 <div class="card-body">
-                    <h6 class="card-title">01.05</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Йога для начинающих</h6>
-                    <p class="card-text">Урок для всех желающих, которые хотят освоить основы йоги.</p>
-                    <p class="card-text"><strong>Тренер:</strong> Елена Смирнова</p>
+                    <h6 class="card-title" th:text="${event.time}"></h6>
+                    <h6 class="card-subtitle mb-2 text-muted" th:text="${event.title}"></h6>
+                    <p class="card-text" th:text="${event.description}"></p>
+                    <p class="card-text" th:text="${event.trainer.firstName}"></p>
                 </div>
             </div>
         </div>
 
-        <!-- Вторник -->
-        <div class="col text-center">
+        <div class="col text-center" th:each="event : ${events[1]}">
             <h5>Вторник</h5>
             <div class="card event-card">
                 <div class="card-body">
-                    <h6 class="card-title">02.05</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Функциональный тренинг</h6>
-                    <p class="card-text">Интенсивная тренировка для улучшения физической формы.</p>
-                    <p class="card-text"><strong>Тренер:</strong> Иван Сидоров</p>
+                    <h6 class="card-title" th:text="${event.time}"></h6>
+                    <h6 class="card-subtitle mb-2 text-muted" th:text="${event.title}"></h6>
+                    <p class="card-text" th:text="${event.description}"></p>
+                    <p class="card-text" th:text="${event.trainer.firstName}"></p>
                 </div>
             </div>
         </div>
 
-        <!-- Среда -->
-        <div class="col text-center">
+        <div class="col text-center" th:each="event : ${events[2]}">
             <h5>Среда</h5>
             <div class="card event-card">
                 <div class="card-body">
-                    <h6 class="card-title">03.05</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Силовая тренировка</h6>
-                    <p class="card-text">Тренировка для наращивания мышечной массы.</p>
-                    <p class="card-text"><strong>Тренер:</strong> Анна Петрова</p>
+                    <h6 class="card-title" th:text="${event.time}"></h6>
+                    <h6 class="card-subtitle mb-2 text-muted" th:text="${event.title}"></h6>
+                    <p class="card-text" th:text="${event.description}"></p>
+                    <p class="card-text" th:text="${event.trainer.firstName}"></p>
                 </div>
             </div>
         </div>
 
-        <!-- Четверг -->
-        <div class="col text-center">
+        <div class="col text-center" th:each="event : ${events[3]}">
             <h5>Четверг</h5>
             <div class="card event-card">
                 <div class="card-body">
-                    <h6 class="card-title">04.05</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Кроссфит</h6>
-                    <p class="card-text">Высокоинтенсивные тренировки для всех уровней подготовки.</p>
-                    <p class="card-text"><strong>Тренер:</strong> Иван Сидоров</p>
+                    <h6 class="card-title" th:text="${event.time}"></h6>
+                    <h6 class="card-subtitle mb-2 text-muted" th:text="${event.title}"></h6>
+                    <p class="card-text" th:text="${event.description}"></p>
+                    <p class="card-text" th:text="${event.trainer.firstName}"></p>
                 </div>
             </div>
         </div>
 
-        <!-- Пятница -->
-        <div class="col text-center">
+        <div class="col text-center" th:each="event : ${events[4]}">
             <h5>Пятница</h5>
             <div class="card event-card">
                 <div class="card-body">
-                    <h6 class="card-title">05.05</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Зумба</h6>
-                    <p class="card-text">Энергичная танцевальная тренировка для поднятия настроения.</p>
-                    <p class="card-text"><strong>Тренер:</strong> Анна Петрова</p>
+                    <h6 class="card-title" th:text="${event.time}"></h6>
+                    <h6 class="card-subtitle mb-2 text-muted" th:text="${event.title}"></h6>
+                    <p class="card-text" th:text="${event.description}"></p>
+                    <p class="card-text" th:text="${event.trainer.firstName}"></p>
                 </div>
             </div>
         </div>
 
-        <!-- Суббота -->
-        <div class="col text-center">
+        <div class="col text-center" th:each="event : ${events[5]}">
             <h5>Суббота</h5>
             <div class="card event-card">
                 <div class="card-body">
-                    <h6 class="card-title">06.05</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Пилатес</h6>
-                    <p class="card-text">Урок для укрепления мышц и улучшения гибкости.</p>
-                    <p class="card-text"><strong>Тренер:</strong> Елена Смирнова</p>
+                    <h6 class="card-title" th:text="${event.time}"></h6>
+                    <h6 class="card-subtitle mb-2 text-muted" th:text="${event.title}"></h6>
+                    <p class="card-text" th:text="${event.description}"></p>
+                    <p class="card-text" th:text="${event.trainer.firstName}"></p>
                 </div>
             </div>
         </div>
 
-        <!-- Воскресенье -->
-        <div class="col text-center">
+        <div class="col text-center" th:each="event : ${events[6]}">
             <h5>Воскресенье</h5>
             <div class="card event-card">
                 <div class="card-body">
-                    <h6 class="card-title">07.05</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Кардио-тренировка</h6>
-                    <p class="card-text">Тренировка для улучшения выносливости и сжигания калорий.</p>
-                    <p class="card-text"><strong>Тренер:</strong> Иван Сидоров</p>
+                    <h6 class="card-title" th:text="${event.time}"></h6>
+                    <h6 class="card-subtitle mb-2 text-muted" th:text="${event.title}"></h6>
+                    <p class="card-text" th:text="${event.description}"></p>
+                    <p class="card-text" th:text="${event.trainer.firstName}"></p>
                 </div>
             </div>
         </div>
