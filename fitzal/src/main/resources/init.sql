@@ -4,9 +4,9 @@ VALUES
     ('admin@fitzal.com', '{noop}admin123', 'Admin', 'User', 'MODERATOR_ROLE'),
     ('client@fitzal.com', '{noop}client123', 'Jane', 'Smith', 'CLIENT_ROLE');
 
-INSERT INTO trainers (bio, specialization)
+INSERT INTO trainers (bio, specialization, first_name, last_name)
 VALUES
-    ('сидел по 105', 'алкаш');
+    ('сидел по 105', 'алкаш', "фить-фить", "пкрлоь");
 -- Добавление начальных событий
 INSERT INTO events (title, description, date, trainer_id)
 VALUES

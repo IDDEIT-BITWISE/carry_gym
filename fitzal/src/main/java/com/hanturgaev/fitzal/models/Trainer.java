@@ -19,7 +19,15 @@ public class Trainer {
     @Column
     private Long id;
 
+    @Column
     private String bio;
 
+    @Column
     private String specialization;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
 }
