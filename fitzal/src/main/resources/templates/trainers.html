@@ -1,123 +1,135 @@
 <!DOCTYPE html>
 <html
-        lang="ru"
-        xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:th="http://www.thymeleaf.org"
-        xmlns:sec="http://www.w3.org/1999/xhtml"
+  lang="ru"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.w3.org/1999/xhtml"
 >
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FitZal</title>
     <link
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-            rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
     />
     <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
     <style>
-        body {
-          background-color: #f8f9fa;
-        }
-        .header {
-          padding: 20px 0;
-          text-align: center;
-        }
-        .trainer-card {
-            margin-bottom: 30px;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.2s;
-            height: 350px
-        }
-        .trainer-card:hover {
-            transform: scale(1.05);
-        }
-        .trainer-photo {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        footer {
+      body {
+        background-color: #f8f9fa;
+      }
+      .header {
+        padding: 20px 0;
+        text-align: center;
+      }
+      .trainer-card {
+        margin-bottom: 30px;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.2s;
+        height: 350px;
+      }
+      .trainer-card:hover {
+        transform: scale(1.05);
+      }
+      .trainer-photo {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      footer {
         background-color: #343a40;
         color: white;
       }
     </style>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">FitZal</a>
-    <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Переключить навигацию"
-    >
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">FitZal</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Переключить навигацию"
+      >
         <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/">Главная</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="/about">О нас</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/news">Новости</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="№">Тренера</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/events/">Мероприятия</a>
-            </li>
-            <li sec:authorize="!isAuthenticated()" class="nav-item">
-                <a class="nav-link" href="/login">Войти</a>
-            </li>
-            <li sec:authorize="isAuthenticated()" class="nav-item">
-                <a class="nav-link" href="/logout">Выйти</a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Главная</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">О нас</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/news">Новости</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="№">Тренера</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/events/">Мероприятия</a>
+          </li>
+          <li sec:authorize="!isAuthenticated()" class="nav-item">
+            <a class="nav-link" href="/login">Войти</a>
+          </li>
+          <li sec:authorize="isAuthenticated()" class="nav-item">
+            <a class="nav-link" href="/logout">Выйти</a>
+          </li>
         </ul>
+      </div>
+    </nav>
+    <div class="header">
+      <h1>Наши тренера</h1>
     </div>
-</nav>
-<div class="header">
-    <h1>Наши тренера</h1>
-</div>
 
-<div class="container mt-4">
-
-    <div class="row">
+    <div class="container mt-4">
+      <div class="row">
         <div class="col-md-4" th:each="trainer : ${trainers}">
-            <div class="card trainer-card">
-                <img th:src="${trainer.photoPath}" alt="Тренер 1" class="trainer-photo">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${trainer.firstName+' '+trainer.lastName}"></h5>
-                    <h6 class="card-subtitle mb-2 text-muted" th:text="${trainer.specialization}"></h6>
-                    <p class="card-text" th:text="${trainer.bio}">Анна - сертифицированный персональный тренер с более чем 5-летним опытом работы. Она поможет вам достичь ваших фитнес-целей и сделает процесс тренировок увлекательным.</p>
-                </div>
+          <div class="card trainer-card">
+            <img
+              th:src="${trainer.photoPath}"
+              alt="Тренер 1"
+              class="trainer-photo"
+            />
+            <div class="card-body">
+              <h5
+                class="card-title"
+                th:text="${trainer.firstName+' '+trainer.lastName}"
+              ></h5>
+              <h6
+                class="card-subtitle mb-2 text-muted"
+                th:text="${trainer.specialization}"
+              ></h6>
+              <p class="card-text" th:text="${trainer.bio}">
+                Анна - сертифицированный персональный тренер с более чем
+                5-летним опытом работы. Она поможет вам достичь ваших
+                фитнес-целей и сделает процесс тренировок увлекательным.
+              </p>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-
-</div>
-<footer class="text-center py-3">
-    <p>&copy; 2025 FitZal. Все права защищены.</p>
-    <p>
+    <footer class="text-center py-3">
+      <p>&copy; 2025 FitZal. Все права защищены.</p>
+      <p>
         Следите за нами в социальных сетях:
         <a href="#" class="text-white">Facebook</a>,
         <a href="#" class="text-white">Instagram</a>,
         <a href="#" class="text-white">Twitter</a>
-    </p>
-</footer>
+      </p>
+    </footer>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
 </html>

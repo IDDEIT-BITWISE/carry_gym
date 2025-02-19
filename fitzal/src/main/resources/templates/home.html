@@ -22,7 +22,7 @@
         background-color: #f8f9fa;
       }
       .hero {
-        background: url('/img/bg_home.jpg');
+        background: url("/img/bg_home.jpg");
         height: 100vh;
         color: white;
         display: flex;
@@ -93,7 +93,10 @@
       <div>
         <h1>FitZal - зал для простых пацанов</h1>
         <p>Разбудите свою силу и преобразите свое тело!</p>
-        <a  sec:authorize="!isAuthenticated()" href="/login" class="btn btn-secondary btn-lg mt-4"
+        <a
+          sec:authorize="!isAuthenticated()"
+          href="/login"
+          class="btn btn-secondary btn-lg mt-4"
           >Присоединяйтесь к нам!</a
         >
       </div>
@@ -103,9 +106,9 @@
       <div class="container">
         <h2 class="text-center">О нас</h2>
         <p class="text-center">
-          FitZal — это место, где молодые люди могут достичь своих
-          фитнес-целей в стильной и поддерживающей атмосфере. Мы предлагаем
-          новейшие тренажеры и квалифицированных тренеров.
+          FitZal — это место, где молодые люди могут достичь своих фитнес-целей
+          в стильной и поддерживающей атмосфере. Мы предлагаем новейшие
+          тренажеры и квалифицированных тренеров.
         </p>
       </div>
     </section>
