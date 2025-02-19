@@ -16,7 +16,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.csrf(CsrfConfigurer::disable)
                 .authorizeHttpRequests(auth ->auth
-                        .requestMatchers("/login","/register", "/", "/about", "/news", "/img/**", "/events", "/trainers").permitAll()
+                        .requestMatchers("/login","/register", "/", "/about", "/news", "/img/**", "/events/", "/trainers").permitAll()
                         .requestMatchers("/events/edit").hasAnyAuthority("ROLE_MODERATOR")
                         .anyRequest().authenticated()
                 )

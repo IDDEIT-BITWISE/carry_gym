@@ -92,87 +92,100 @@
 <div class="container-fluid mt-4">
 
     <div class="row">
-
-        <div class="col text-center" th:each="event : ${events[0]}">
+        <div  class="col text-center">
             <h5>Понедельник</h5>
-            <div class="card event-card">
-                <div class="card-body">
-                    <h6 class="card-title" th:text="${event.time}"></h6>
-                    <h6 class="card-subtitle mb-2 text-muted" th:text="${event.title}"></h6>
-                    <p class="card-text" th:text="${event.description}"></p>
-                    <p class="card-text" th:text="${event.trainer.firstName}"></p>
+            <div th:each="event : ${events[0]}">
+                <div class="card event-card">
+                    <div class="card-body">
+                        <h6 class="card-title" th:text="${event.time}"></h6>
+                        <h6 class="card-subtitle mb-2 text-muted" th:text="${event.title}"></h6>
+                        <p class="card-text" th:text="${event.description}"></p>
+                        <p class="card-text" th:text="${event.trainer.firstName}"></p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col text-center" th:each="event : ${events[1]}">
+        <div  class="col text-center">
             <h5>Вторник</h5>
-            <div class="card event-card">
-                <div class="card-body">
-                    <h6 class="card-title" th:text="${event.time}"></h6>
-                    <h6 class="card-subtitle mb-2 text-muted" th:text="${event.title}"></h6>
-                    <p class="card-text" th:text="${event.description}"></p>
-                    <p class="card-text" th:text="${event.trainer.firstName}"></p>
+            <div th:each="event : ${events[1]}">
+                <div class="card event-card">
+                    <div class="card-body">
+                        <h6 class="card-title" th:text="${event.time}"></h6>
+                        <h6 class="card-subtitle mb-2 text-muted" th:text="${event.title}"></h6>
+                        <p class="card-text" th:text="${event.description}"></p>
+                        <p class="card-text" th:text="${event.trainer.firstName}"></p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col text-center" th:each="event : ${events[2]}">
+        <div  class="col text-center">
             <h5>Среда</h5>
-            <div class="card event-card">
-                <div class="card-body">
-                    <h6 class="card-title" th:text="${event.time}"></h6>
-                    <h6 class="card-subtitle mb-2 text-muted" th:text="${event.title}"></h6>
-                    <p class="card-text" th:text="${event.description}"></p>
-                    <p class="card-text" th:text="${event.trainer.firstName}"></p>
+            <div th:each="event : ${events[2]}">
+                <div class="card event-card">
+                    <div class="card-body">
+                        <h6 class="card-title" th:text="${event.time}"></h6>
+                        <h6 class="card-subtitle mb-2 text-muted" th:text="${event.title}"></h6>
+                        <p class="card-text" th:text="${event.description}"></p>
+                        <p class="card-text" th:text="${event.trainer.firstName}"></p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col text-center" th:each="event : ${events[3]}">
+        <div  class="col text-center">
             <h5>Четверг</h5>
-            <div class="card event-card">
-                <div class="card-body">
-                    <h6 class="card-title" th:text="${event.time}"></h6>
-                    <h6 class="card-subtitle mb-2 text-muted" th:text="${event.title}"></h6>
-                    <p class="card-text" th:text="${event.description}"></p>
-                    <p class="card-text" th:text="${event.trainer.firstName}"></p>
+            <div th:each="event : ${events[3]}">
+                <div class="card event-card">
+                    <div class="card-body">
+                        <h6 class="card-title" th:text="${event.time}"></h6>
+                        <h6 class="card-subtitle mb-2 text-muted" th:text="${event.title}"></h6>
+                        <p class="card-text" th:text="${event.description}"></p>
+                        <p class="card-text" th:text="${event.trainer.firstName}"></p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col text-center" th:each="event : ${events[4]}">
+        <div  class="col text-center">
             <h5>Пятница</h5>
-            <div class="card event-card">
-                <div class="card-body">
-                    <h6 class="card-title" th:text="${event.time}"></h6>
-                    <h6 class="card-subtitle mb-2 text-muted" th:text="${event.title}"></h6>
-                    <p class="card-text" th:text="${event.description}"></p>
-                    <p class="card-text" th:text="${event.trainer.firstName}"></p>
+            <div th:each="event : ${events[4]}">
+                <div class="card event-card">
+                    <div class="card-body">
+                        <h6 class="card-title" th:text="${event.time}"></h6>
+                        <h6 class="card-subtitle mb-2 text-muted" th:text="${event.title}"></h6>
+                        <p class="card-text" th:text="${event.description}"></p>
+                        <p class="card-text" th:text="${event.trainer.firstName}"></p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col text-center" th:each="event : ${events[5]}">
+        <div  class="col text-center">
             <h5>Суббота</h5>
-            <div class="card event-card">
-                <div class="card-body">
-                    <h6 class="card-title" th:text="${event.time}"></h6>
-                    <h6 class="card-subtitle mb-2 text-muted" th:text="${event.title}"></h6>
-                    <p class="card-text" th:text="${event.description}"></p>
-                    <p class="card-text" th:text="${event.trainer.firstName}"></p>
+            <div th:each="event : ${events[5]}">
+                <div class="card event-card">
+                    <div class="card-body">
+                        <h6 class="card-title" th:text="${event.time}"></h6>
+                        <h6 class="card-subtitle mb-2 text-muted" th:text="${event.title}"></h6>
+                        <p class="card-text" th:text="${event.description}"></p>
+                        <p class="card-text" th:text="${event.trainer.firstName}"></p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col text-center" th:each="event : ${events[6]}">
+        <div  class="col text-center">
             <h5>Воскресенье</h5>
-            <div class="card event-card">
-                <div class="card-body">
-                    <h6 class="card-title" th:text="${event.time}"></h6>
-                    <h6 class="card-subtitle mb-2 text-muted" th:text="${event.title}"></h6>
-                    <p class="card-text" th:text="${event.description}"></p>
-                    <p class="card-text" th:text="${event.trainer.firstName}"></p>
+            <div th:each="event : ${events[6]}">
+                <div class="card event-card">
+                    <div class="card-body">
+                        <h6 class="card-title" th:text="${event.time}"></h6>
+                        <h6 class="card-subtitle mb-2 text-muted" th:text="${event.title}"></h6>
+                        <p class="card-text" th:text="${event.description}"></p>
+                        <p class="card-text" th:text="${event.trainer.firstName}"></p>
+                    </div>
                 </div>
             </div>
         </div>
