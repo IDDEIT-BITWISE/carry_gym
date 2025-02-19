@@ -34,6 +34,15 @@
           background-color: #343a40;
           color: white;
         }
+        .event-card {
+            margin-bottom: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+        .event-card:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -76,21 +85,104 @@
         </ul>
     </div>
 </nav>
-<div sec:authorize="!isAuthenticated()">
-    Для просмотра мероприятий надо войти
+<div class="container-fluid mt-4">
+
+    <div class="row">
+
+        <!-- Понедельник -->
+        <div class="col text-center">
+            <h5>Понедельник</h5>
+            <div class="card event-card">
+                <div class="card-body">
+                    <h6 class="card-title">01.05</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Йога для начинающих</h6>
+                    <p class="card-text">Урок для всех желающих, которые хотят освоить основы йоги.</p>
+                    <p class="card-text"><strong>Тренер:</strong> Елена Смирнова</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Вторник -->
+        <div class="col text-center">
+            <h5>Вторник</h5>
+            <div class="card event-card">
+                <div class="card-body">
+                    <h6 class="card-title">02.05</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Функциональный тренинг</h6>
+                    <p class="card-text">Интенсивная тренировка для улучшения физической формы.</p>
+                    <p class="card-text"><strong>Тренер:</strong> Иван Сидоров</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Среда -->
+        <div class="col text-center">
+            <h5>Среда</h5>
+            <div class="card event-card">
+                <div class="card-body">
+                    <h6 class="card-title">03.05</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Силовая тренировка</h6>
+                    <p class="card-text">Тренировка для наращивания мышечной массы.</p>
+                    <p class="card-text"><strong>Тренер:</strong> Анна Петрова</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Четверг -->
+        <div class="col text-center">
+            <h5>Четверг</h5>
+            <div class="card event-card">
+                <div class="card-body">
+                    <h6 class="card-title">04.05</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Кроссфит</h6>
+                    <p class="card-text">Высокоинтенсивные тренировки для всех уровней подготовки.</p>
+                    <p class="card-text"><strong>Тренер:</strong> Иван Сидоров</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Пятница -->
+        <div class="col text-center">
+            <h5>Пятница</h5>
+            <div class="card event-card">
+                <div class="card-body">
+                    <h6 class="card-title">05.05</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Зумба</h6>
+                    <p class="card-text">Энергичная танцевальная тренировка для поднятия настроения.</p>
+                    <p class="card-text"><strong>Тренер:</strong> Анна Петрова</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Суббота -->
+        <div class="col text-center">
+            <h5>Суббота</h5>
+            <div class="card event-card">
+                <div class="card-body">
+                    <h6 class="card-title">06.05</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Пилатес</h6>
+                    <p class="card-text">Урок для укрепления мышц и улучшения гибкости.</p>
+                    <p class="card-text"><strong>Тренер:</strong> Елена Смирнова</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Воскресенье -->
+        <div class="col text-center">
+            <h5>Воскресенье</h5>
+            <div class="card event-card">
+                <div class="card-body">
+                    <h6 class="card-title">07.05</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Кардио-тренировка</h6>
+                    <p class="card-text">Тренировка для улучшения выносливости и сжигания калорий.</p>
+                    <p class="card-text"><strong>Тренер:</strong> Иван Сидоров</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </div>
-<div sec:authorize="isAuthenticated()">
-    Пока ниче нету
-</div>
-<footer class="text-center py-3">
-    <p>&copy; 2025 FitZal. Все права защищены.</p>
-    <p>
-        Следите за нами в социальных сетях:
-        <a href="#" class="text-white">Facebook</a>,
-        <a href="#" class="text-white">Instagram</a>,
-        <a href="#" class="text-white">Twitter</a>
-    </p>
-</footer>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
