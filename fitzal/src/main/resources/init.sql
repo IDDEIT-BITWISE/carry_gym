@@ -16,11 +16,7 @@ VALUES
     ('Yoga Class', 'Morning yoga session', '2023-10-15 09:00:00', 1),
     ('Strength Training', 'Weightlifting and cardio', '2023-10-16 18:00:00', 1);
 
-INSERT INTO feedbacks (client_id, event_id, rating, comment)
-VALUES
-    (1,1,5,'это пиздец'),
-    (2,1,1,'это ахуенно');
--- Добавление участников в события
+
 INSERT INTO event_participants (event_id, user_id)
 VALUES
     (1, 2), -- Jane (client) участвует в Yoga Class

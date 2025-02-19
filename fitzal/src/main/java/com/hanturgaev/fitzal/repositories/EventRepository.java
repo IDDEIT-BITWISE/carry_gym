@@ -9,9 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface EventRepository extends JpaRepository<Event, Long> {
-    // Найти события по тренеру
     List<Event> findByTrainerId(Long trainerId);
 
-    // Найти события по участнику
     List<Event> findByParticipantsId(Long participantId);
 }
