@@ -90,7 +90,7 @@
       <div>
         <h1>FitZal - зал для простых пацанов</h1>
         <p>Разбудите свою силу и преобразите свое тело!</p>
-        <a href="#contact" class="btn btn-secondary btn-lg mt-4"
+        <a  sec:authorize="!isAuthenticated()" href="/login" class="btn btn-secondary btn-lg mt-4"
           >Присоединяйтесь к нам!</a
         >
       </div>

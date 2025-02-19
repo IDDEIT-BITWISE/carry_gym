@@ -73,7 +73,12 @@
         </ul>
     </div>
 </nav>
-
+<div sec:authorize="!isAuthenticated()">
+    Для просмотра мероприятий надо войти
+</div>
+<div sec:authorize="isAuthenticated()">
+    Пока ниче нету
+</div>
 <footer class="text-center py-3">
     <p>&copy; 2025 FitZal. Все права защищены.</p>
     <p>

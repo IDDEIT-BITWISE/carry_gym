@@ -12,13 +12,12 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.csrf(CsrfConfigurer::disable)
                 .authorizeHttpRequests(auth ->auth
-                        .requestMatchers("/login","/register", "/home").permitAll()
-                        .requestMatchers("/events/create").hasAnyAuthority("ROLE_MODERATOR")
+                        .requestMatchers("/login","/register", "/", "/about", "/news", "/img/**", "/events").permitAll()
+                        .requestMatchers("/events/edit").hasAnyAuthority("ROLE_MODERATOR")
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
