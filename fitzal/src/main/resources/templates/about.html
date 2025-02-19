@@ -64,8 +64,11 @@
               <li class="nav-item">
                   <a class="nav-link" href="/events">Мероприятия</a>
               </li>
-              <li class="nav-item">
+              <li sec:authorize="!isAuthenticated()" class="nav-item">
                   <a class="nav-link" href="/login">Войти</a>
+              </li>
+              <li sec:authorize="isAuthenticated()" class="nav-item">
+                  <a class="nav-link" href="/logout">Выйти</a>
               </li>
           </ul>
       </div>
