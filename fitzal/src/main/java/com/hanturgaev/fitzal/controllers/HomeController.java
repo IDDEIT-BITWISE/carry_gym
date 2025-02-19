@@ -1,5 +1,7 @@
 package com.hanturgaev.fitzal.controllers;
+import com.hanturgaev.fitzal.models.Trainer;
 import com.hanturgaev.fitzal.models.User;
+import com.hanturgaev.fitzal.services.TrainerService;
 import com.hanturgaev.fitzal.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -24,6 +26,9 @@ public class HomeController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private TrainerService trainerService;
 
     @GetMapping("/")
     public String index(){
@@ -83,7 +88,9 @@ public class HomeController {
     }
 
     @GetMapping(value = "/trainers")
-    public String goTrainers() {
+    public String goTrainers(Model model) {
+        model.addAttribute("trainers", trainerService.getAllTrainers());
+        model.addAttribute("trainer", new Trainer());
         return "trainers";
     }
 

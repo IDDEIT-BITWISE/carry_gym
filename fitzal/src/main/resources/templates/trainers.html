@@ -87,57 +87,22 @@
     </div>
 </nav>
 <div class="header">
-    <h1>Наши тренеры</h1>
+    <h1>Наши тренера</h1>
 </div>
 
 <div class="container mt-4">
 
     <div class="row">
-
-        <div class="col-md-4">
+        <div class="col-md-4" th:each="trainer : ${trainers}">
             <div class="card trainer-card">
-                <img src="/img/coach_1.png" alt="Тренер 1" class="trainer-photo">
+                <img src="${trainer.photoPath}" alt="Тренер 1" class="trainer-photo">
                 <div class="card-body">
-                    <h5 class="card-title">Анна Петрова</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Персональный тренер</h6>
-                    <p class="card-text">Анна - сертифицированный персональный тренер с более чем 5-летним опытом работы. Она поможет вам достичь ваших фитнес-целей и сделает процесс тренировок увлекательным.</p>
+                    <h5 class="card-title" th:text="${trainer.firstName}"></h5>
+                    <h6 class="card-subtitle mb-2 text-muted" th:text="${trainer.specialization}"></h6>
+                    <p class="card-text" th:text="${trainer.bio}">Анна - сертифицированный персональный тренер с более чем 5-летним опытом работы. Она поможет вам достичь ваших фитнес-целей и сделает процесс тренировок увлекательным.</p>
                 </div>
             </div>
         </div>
-
-        <div class="col-md-4">
-            <div class="card trainer-card">
-                <img src="/img/coach_2.png" alt="Тренер 2" class="trainer-photo">
-                <div class="card-body">
-                    <h5 class="card-title">Иван Сидоров</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Специалист по функциональному тренингу</h6>
-                    <p class="card-text">Иван - эксперт в области функционального тренинга. Его подход основан на индивидуальных потребностях каждого клиента, что позволяет достигать максимальных результатов.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card trainer-card">
-                <img src="/img/coach_3.png" alt="Тренер 3" class="trainer-photo">
-                <div class="card-body">
-                    <h5 class="card-title">Елена Смирнова</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Инструктор по йоге</h6>
-                    <p class="card-text">Елена - сертифицированный инструктор по йоге, которая помогает клиентам улучшить гибкость, расслабиться и найти внутренний баланс.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card trainer-card">
-                <img src="/img/coach_4.png" alt="Тренер 3" class="trainer-photo">
-                <div class="card-body">
-                    <h5 class="card-title">Андрей Алексеев</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Инструктор по боксу и борьбе</h6>
-                    <p class="card-text">Пацан из белореченска</p>
-                </div>
-            </div>
-        </div>
-
-
     </div>
 
 </div>
