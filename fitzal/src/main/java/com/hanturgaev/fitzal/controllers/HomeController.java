@@ -75,6 +75,15 @@ public class HomeController {
         return "register";
     }
 
+    @GetMapping(value = "/about")
+    public String goAbout() {
+        return "about";
+    }
+    @GetMapping(value = "/events")
+    public String goEvents() {
+        return "events";
+    }
+
 
 //    @PostMapping(value = "/register")
 //    public String register(@ModelAttribute User user, HttpServletRequest request,
