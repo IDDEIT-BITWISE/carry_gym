@@ -1,74 +1,100 @@
 <!DOCTYPE html>
-<html lang="ru"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html
+  lang="ru"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.w3.org/1999/xhtml"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FitZal</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <style>
-        body {
-            background-color: #f8f9fa;
-        }
+      body {
+        background-color: #f8f9fa;
+      }
     </style>
-</head>
-<body>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">FitZal</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Переключить навигацию">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">FitZal</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Переключить навигацию"
+      >
         <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Главная</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#about">О нас</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#services">Услуги</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#contact">Контакты</a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Главная</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">О нас</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/news">Новости</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/events">Мероприятия</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Регистрация</a>
+          </li>
         </ul>
-    </div>
-</nav>
+      </div>
+    </nav>
 
-<div class="container w-50">
-    <div class="row mt-4">
+    <div class="container w-50">
+      <div class="row mt-4">
         <h1>Регистрация</h1>
+      </div>
+
+      <form id="register-form" th:action="@{/register}" method="POST">
+        <div class="form-group">
+          <label for="firstName">Имя</label>
+          <input id="firstName" name="firstName" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="lastName">Фамилия</label>
+          <input id="lastName" name="lastName" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" name="email" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="pass">Пароль</label>
+          <input
+            id="pass"
+            type="password"
+            name="password"
+            class="form-control"
+          />
+        </div>
+
+        <button type="submit" id="btn-save" class="btn btn-primary mt-3">
+          Зарегистрироваться
+        </button>
+        <a class="btn btn-secondary mt-3" href="/login">Войти</a>
+      </form>
     </div>
 
-    <form id="register-form" th:action="@{/register}" method="POST">
-        <div class="form-group">
-            <label for="firstName">Имя</label>
-            <input id="firstName" name="firstName" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label for="lastName">Фамилия</label>
-            <input id="lastName" name="lastName" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input id="email" name="email" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label for="pass">Пароль</label>
-            <input id="pass" type="password" name="password" class="form-control" />
-        </div>
-
-        <button type="submit" id="btn-save" class="btn btn-primary mt-3">Зарегистрироваться</button>
-        <a class="btn btn-secondary mt-3" href="/login">Войти</a>
-    </form>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
 </html>

@@ -1,141 +1,181 @@
 <!DOCTYPE html>
-<html lang="ru"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html
+  lang="ru"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.w3.org/1999/xhtml"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FitZal</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .hero {
-            background: url(../static/img/bg_home.jpg);
-            height: 100vh;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        .hero h1 {
-            font-size: 4rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-        }
-        .hero p {
-            font-size: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-        }
-        .service-icon {
-            font-size: 3rem;
-            color: #007bff;
-        }
-        footer {
-            background-color: #343a40;
-            color: white;
-        }
+      body {
+        background-color: #f8f9fa;
+      }
+      .hero {
+        background: url(/../static/img/bg_home.jpg);
+        height: 100vh;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      .hero h1 {
+        font-size: 4rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      }
+      .hero p {
+        font-size: 1.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      }
+      .service-icon {
+        font-size: 3rem;
+        color: #007bff;
+      }
+      footer {
+        background-color: #343a40;
+        color: white;
+      }
     </style>
-</head>
-<body>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">FitZal</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Переключить навигацию">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">FitZal</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Переключить навигацию"
+      >
         <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Главная</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#about">О нас</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#services">Услуги</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#contact">Контакты</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/login">Войти</a>
-            </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Главная</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">О нас</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/news">Новости</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/events">Мероприятия</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Войти</a>
+          </li>
         </ul>
-    </div>
-</nav>
+      </div>
+    </nav>
 
-<div class="hero">
-    <div>
+    <div class="hero">
+      <div>
         <h1>FitZal - зал для простых пацанов</h1>
         <p>Разбудите свою силу и преобразите свое тело!</p>
-        <a href="#contact" class="btn btn-secondary btn-lg mt-4">Присоединяйтесь к нам!</a>
+        <a href="#contact" class="btn btn-secondary btn-lg mt-4"
+          >Присоединяйтесь к нам!</a
+        >
+      </div>
     </div>
-</div>
 
-<section id="about" class="py-5">
-    <div class="container">
+    <section id="about" class="py-5">
+      <div class="container">
         <h2 class="text-center">О нас</h2>
-        <p class="text-center">Iron Club — это место, где молодые люди могут достичь своих фитнес-целей в стильной и поддерживающей атмосфере. Мы предлагаем новейшие тренажеры и квалифицированных тренеров.</p>
-    </div>
-</section>
+        <p class="text-center">
+          Iron Club — это место, где молодые люди могут достичь своих
+          фитнес-целей в стильной и поддерживающей атмосфере. Мы предлагаем
+          новейшие тренажеры и квалифицированных тренеров.
+        </p>
+      </div>
+    </section>
 
-<section id="services" class="py-5 bg-light">
-    <div class="container">
+    <section id="services" class="py-5 bg-light">
+      <div class="container">
         <h2 class="text-center">Наши услуги</h2>
         <div class="row mt-4">
-            <div class="col-md-4 text-center">
-                <div class="service-icon"><i class="fas fa-dumbbell"></i></div>
-                <h3>Персональные занятия</h3>
-                <p>Индивидуальные программы тренировок для достижения ваших целей.</p>
-            </div>
-            <div class="col-md-4 text-center">
-                <div class="service-icon"><i class="fas fa-users"></i></div>
-                <h3>Групповые занятия</h3>
-                <p>Энергичные групповые тренировки для мотивации и общения.</p>
-            </div>
-            <div class="col-md-4 text-center">
-                <div class="service-icon"><i class="fas fa-utensils"></i></div>
-                <h3>Планы питания</h3>
-                <p>Экспертные рекомендации по питанию для достижения результатов.</p>
-            </div>
+          <div class="col-md-4 text-center">
+            <div class="service-icon"><i class="fas fa-dumbbell"></i></div>
+            <h3>Персональные занятия</h3>
+            <p>
+              Индивидуальные программы тренировок для достижения ваших целей.
+            </p>
+          </div>
+          <div class="col-md-4 text-center">
+            <div class="service-icon"><i class="fas fa-users"></i></div>
+            <h3>Групповые занятия</h3>
+            <p>Энергичные групповые тренировки для мотивации и общения.</p>
+          </div>
+          <div class="col-md-4 text-center">
+            <div class="service-icon"><i class="fas fa-utensils"></i></div>
+            <h3>Планы питания</h3>
+            <p>
+              Экспертные рекомендации по питанию для достижения результатов.
+            </p>
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<section id="contact" class="py-5">
-    <div class="container">
+    <section id="contact" class="py-5">
+      <div class="container">
         <p class="text-center">Адрес: Иркутск, ул. Лермонтова, 300</p>
         <form>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="name">Имя</label>
-                    <input type="text" class="form-control" id="name" placeholder="Ваше имя" required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="phone">Номер телефона</label>
-                    <input type="text" class="form-control" id="phone" placeholder="Ваш номер" required>
-                </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="name">Имя</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                placeholder="Ваше имя"
+                required
+              />
             </div>
-            <button type="submit" class="btn btn-primary">Свяжитесь со мной</button>
+            <div class="form-group col-md-6">
+              <label for="phone">Номер телефона</label>
+              <input
+                type="text"
+                class="form-control"
+                id="phone"
+                placeholder="Ваш номер"
+                required
+              />
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Свяжитесь со мной
+          </button>
         </form>
-    </div>
-</section>
+      </div>
+    </section>
 
-<footer class="text-center py-3">
-    <p>&copy; 2025 FitZal. Все права защищены.</p>
-    <p>Следите за нами в социальных сетях:
+    <footer class="text-center py-3">
+      <p>&copy; 2025 FitZal. Все права защищены.</p>
+      <p>
+        Следите за нами в социальных сетях:
         <a href="#" class="text-white">Facebook</a>,
         <a href="#" class="text-white">Instagram</a>,
         <a href="#" class="text-white">Twitter</a>
-    </p>
-</footer>
+      </p>
+    </footer>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-</body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
 </html>
