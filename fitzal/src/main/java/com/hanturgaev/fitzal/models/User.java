@@ -34,9 +34,6 @@ public class User implements UserDetails {
     private String lastName;
 
     @Embedded
-    private TrainerProfile trainerProfile;
-
-    @Embedded
     private ClientProfile clientProfile;
 
     @Column
