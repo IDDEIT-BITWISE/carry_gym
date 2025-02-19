@@ -82,6 +82,11 @@ public class HomeController {
         return "events";
     }
 
+    @GetMapping(value = "/trainers")
+    public String goTrainers() {
+        return "trainers";
+    }
+
 
 //    @PostMapping(value = "/register")
 //    public String register(@ModelAttribute User user, HttpServletRequest request,
