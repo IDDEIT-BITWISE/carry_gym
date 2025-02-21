@@ -103,6 +103,7 @@
                 ></h6>
                 <p class="card-text" th:text="${event.description}"></p>
                 <p class="card-text" th:text="${event.trainer.firstName}"></p>
+                <p class="card-text" th:text="${event.participants.size()+'/'+event.maxClients}"></p>
                 <a sec:authorize="hasAuthority('MODERATOR_ROLE')" class="btn btn-danger"
                    th:href="@{/events/edit/{id}(id=${event.id})}">Редактировать</a>
                 <a sec:authorize="hasAuthority('CLIENT_ROLE')" class="btn btn-secondary"
@@ -124,6 +125,7 @@
                 ></h6>
                 <p class="card-text" th:text="${event.description}"></p>
                 <p class="card-text" th:text="${event.trainer.firstName}"></p>
+                <p class="card-text" th:text="${event.participants.size()+'/'+event.maxClients}"></p>
                 <a sec:authorize="hasAuthority('MODERATOR_ROLE')" class="btn btn-danger"
                    th:href="@{/events/edit/{id}(id=${event.id})}">Редактировать</a>
                 <a sec:authorize="hasAuthority('CLIENT_ROLE')" class="btn btn-secondary"
@@ -145,6 +147,7 @@
                 ></h6>
                 <p class="card-text" th:text="${event.description}"></p>
                 <p class="card-text" th:text="${event.trainer.firstName}"></p>
+                <p class="card-text" th:text="${event.participants.size()+'/'+event.maxClients}"></p>
                 <a sec:authorize="hasAuthority('MODERATOR_ROLE')" class="btn btn-danger"
                    th:href="@{/events/edit/{id}(id=${event.id})}">Редактировать</a>
                 <a sec:authorize="hasAuthority('CLIENT_ROLE')" class="btn btn-secondary"
@@ -166,6 +169,7 @@
                 ></h6>
                 <p class="card-text" th:text="${event.description}"></p>
                 <p class="card-text" th:text="${event.trainer.firstName}"></p>
+                <p class="card-text" th:text="${event.participants.size()+'/'+event.maxClients}"></p>
                 <a sec:authorize="hasAuthority('MODERATOR_ROLE')" class="btn btn-danger"
                    th:href="@{/events/edit/{id}(id=${event.id})}">Редактировать</a>
                 <a sec:authorize="hasAuthority('CLIENT_ROLE')" class="btn btn-secondary"
@@ -187,6 +191,7 @@
                 ></h6>
                 <p class="card-text" th:text="${event.description}"></p>
                 <p class="card-text" th:text="${event.trainer.firstName}"></p>
+                <p class="card-text" th:text="${event.participants.size()+'/'+event.maxClients}"></p>
                 <a sec:authorize="hasAuthority('MODERATOR_ROLE')" class="btn btn-danger"
                    th:href="@{/events/edit/{id}(id=${event.id})}">Редактировать</a>
                 <a sec:authorize="hasAuthority('CLIENT_ROLE')" class="btn btn-secondary"
@@ -208,6 +213,7 @@
                 ></h6>
                 <p class="card-text" th:text="${event.description}"></p>
                 <p class="card-text" th:text="${event.trainer.firstName}"></p>
+                <p class="card-text" th:text="${event.participants.size()+'/'+event.maxClients}"></p>
                 <a sec:authorize="hasAuthority('MODERATOR_ROLE')" class="btn btn-danger"
                    th:href="@{/events/edit/{id}(id=${event.id})}">Редактировать</a>
                 <a sec:authorize="hasAuthority('CLIENT_ROLE')" class="btn btn-secondary"
@@ -229,6 +235,7 @@
                 ></h6>
                 <p class="card-text" th:text="${event.description}"></p>
                 <p class="card-text" th:text="${event.trainer.firstName}"></p>
+                <p class="card-text" th:text="${event.participants.size()+'/'+event.maxClients}"></p>
                 <a sec:authorize="hasAuthority('MODERATOR_ROLE')" class="btn btn-danger"
                    th:href="@{/events/edit/{id}(id=${event.id})}">Редактировать</a>
                 <a sec:authorize="hasAuthority('CLIENT_ROLE')" class="btn btn-secondary"
