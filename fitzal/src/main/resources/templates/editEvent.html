@@ -1,15 +1,46 @@
 <!DOCTYPE html>
-<html
-        lang="ru"
-        xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:th="http://www.thymeleaf.org"
-        xmlns:sec="http://www.w3.org/1999/xhtml"
->
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Редактирование события</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  Edit Event
+<div class="container mt-4">
+    <h2>Редактирование события</h2>
+    <form th:action="@{/events/edit/{id}(id=${event.id})}" th:object="${event}" method="post">
+        <div class="form-group">
+            <label for="title">Название</label>
+            <input type="text" class="form-control" id="title" th:field="*{title}" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Описание</label>
+            <textarea class="form-control" id="description" th:field="*{description}" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="time">Время</label>
+            <input type="time" class="form-control" id="time" th:field="*{time}" required>
+        </div>
+        <div class="form-group">
+            <label for="day">День недели</label>
+            <input type="text" class="form-control" id="day" th:field="*{day}" required>
+        </div>
+        <div class="form-group">
+            <label for="trainer">Тренер</label>
+            <select class="form-control" id="trainer" th:field="*{trainer}" required>
+                <option th:each="trainer : ${trainers}"
+                        th:value="${trainer.id}"
+                        th:text="${trainer.firstName + ' ' + trainer.lastName}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="maxClients">Максимальное количество участников</label>
+            <input type="number" class="form-control" id="maxClients" th:field="*{maxClients}" required>
+        </div>
+        <button type="submit" "btn btn-primary">Сохранить изменения</button>
+        <a th:href="@{/events/}" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
 </body>
 </html>

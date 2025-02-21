@@ -46,15 +46,20 @@ public class EventController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editEvent(@PathVariable("id") Long id) {
-
+    public String showEditForm(@PathVariable("id") Long id, Model model) {
+        Event event = eventService.getEventById(id)
+                .orElseThrow(() -> new RuntimeException("Событие не найдено"));
+        model.addAttribute("event", event);
+        List<Trainer> trainers = trainerService.getAllTrainers();
+        model.addAttribute("trainers", trainers);
         return "editEvent";
     }
 
-    @GetMapping("/join/{id}")
-    public String checkEvent(@PathVariable("id") Long id) {
-
-        return "join!!";
+    @PostMapping("/edit/{id}")
+    public String updateEvent(@PathVariable("id") Long id, @ModelAttribute Event event) {
+        event.setId(id);
+        eventService.updateEvent(event);
+        return "redirect:/events/";
     }
 
 }
