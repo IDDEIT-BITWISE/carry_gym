@@ -71,8 +71,6 @@ public class EventService {
             result.add(eventsByDay);
         }
 
-
-
         return result;
     }
 

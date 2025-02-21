@@ -43,5 +43,8 @@ public class Event {
     )
     private List<User> participants;
 
+    @Column
+    private int maxClients;
+
 
 }

@@ -51,10 +51,10 @@ public class EventController {
         return "editEvent";
     }
 
-    @GetMapping("/check/{id}")
+    @GetMapping("/join/{id}")
     public String checkEvent(@PathVariable("id") Long id) {
 
-        return "checked!!";
+        return "join!!";
     }
 
 }
