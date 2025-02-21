@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.http.ResponseEntity;
 
+import javax.sound.midi.Soundbank;
 import java.util.List;
 
 @Controller
@@ -39,12 +40,15 @@ public class EventController {
 
     @GetMapping("/")
     public String index(Model model, Authentication authentication){
-        User user = (User)authentication.getPrincipal();
+        if(authentication != null){
+            User user = (User)authentication.getPrincipal();
+            model.addAttribute("userEventList", eventService.getEventsByUserId(user.getId()));
+            System.out.println(eventService.getEventsByUserId(user.getId()));
+        }
 
         model.addAttribute("events", eventService.getAllEventsGroupByDay());
         model.addAttribute("event", new Event());
-        model.addAttribute("userEventList", eventService.getEventsByUserId(user.getId()));
-        System.out.println(eventService.getEventsByUserId(user.getId()));
+
         return "events";
     }
 
@@ -60,13 +64,14 @@ public class EventController {
 
     @PostMapping("/edit/{id}")
     public String updateEvent(@PathVariable("id") Long id, @ModelAttribute Event event) {
-        event.setId(id);
+        Event refEvent = eventService.getEventById(id).orElseThrow(() -> new RuntimeException("Event not found"));
+        event.setParticipants(refEvent.getParticipants());
         eventService.updateEvent(event);
         return "redirect:/events/";
     }
 
 
-    @PostMapping("/join/{eventId}")
+    @GetMapping("/join/{eventId}")
     public String joinEvent(@PathVariable("eventId") Long eventId,
                             Authentication authentication) {
         String username = authentication.getName();
@@ -78,7 +83,7 @@ public class EventController {
         return "redirect:/events/";
     }
 
-    @PostMapping("/leave/{eventId}")
+    @GetMapping("/leave/{eventId}")
     public String leaveEvent(@PathVariable("eventId") Long eventId,
                              Authentication authentication) {
         String email = authentication.getName();
@@ -87,9 +92,18 @@ public class EventController {
 
         eventService.leaveEvent(eventId, user.getId());
         return "redirect:/events/";
-
-
     }
+
+    @GetMapping("/delete/{eventId}")
+    public String deleteEvent(@PathVariable("eventId") Long eventId,
+                            Authentication authentication) {
+
+        eventService.deleteEvent(eventId);
+
+        return "redirect:/events/";
+    }
+
+
 }
 
 

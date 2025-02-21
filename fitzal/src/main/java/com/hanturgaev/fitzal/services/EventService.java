@@ -78,6 +78,7 @@ public class EventService {
 
     @Transactional
     public void updateEvent(Event event) {
+
         eventRepository.save(event);
     }
 

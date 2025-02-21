@@ -140,16 +140,28 @@
                 ></p>
                 <a
                   sec:authorize="hasAuthority('MODERATOR_ROLE')"
-                  class="btn btn-danger"
+                  class="btn btn-info w-75"
                   th:href="@{/events/edit/{id}(id=${event.id})}"
                   >Редактировать</a
                 >
                 <a
+                  sec:authorize="hasAuthority('MODERATOR_ROLE')"
+                  class="btn btn-dark mt-2 w-75"
+                  th:href="@{/events/delete/{id}(id=${event.id})}"
+                >Удалить</a
+                >
+                <a
                   sec:authorize="hasAuthority('CLIENT_ROLE')"
                   class="btn btn-secondary"
-                  th:href="@{/events/check/{id}(id=${event.id})}"
-                  >Записаться</a
-                >
+                  th:if="${(!userEventList.contains(event.id)) && (event.participants.size()<event.maxClients)}"
+                  th:href="@{/events/join/{id}(id=${event.id})}"
+                  >Записаться</a>
+                <a
+                  sec:authorize="hasAuthority('CLIENT_ROLE')"
+                  class="btn btn-danger"
+                  th:if="${userEventList.contains(event.id)}"
+                  th:href="@{/events/leave/{id}(id=${event.id})}"
+                >Отписаться</a>
               </div>
             </div>
           </div>
@@ -172,17 +184,29 @@
                   th:text="${event.participants.size()+'/'+event.maxClients}"
                 ></p>
                 <a
-                  sec:authorize="hasAuthority('MODERATOR_ROLE')"
-                  class="btn btn-danger"
-                  th:href="@{/events/edit/{id}(id=${event.id})}"
-                  >Редактировать</a
+                        sec:authorize="hasAuthority('MODERATOR_ROLE')"
+                        class="btn btn-info w-75"
+                        th:href="@{/events/edit/{id}(id=${event.id})}"
+                >Редактировать</a
                 >
                 <a
-                  sec:authorize="hasAuthority('CLIENT_ROLE')"
-                  class="btn btn-secondary"
-                  th:href="@{/events/check/{id}(id=${event.id})}"
-                  >Записаться</a
+                        sec:authorize="hasAuthority('MODERATOR_ROLE')"
+                        class="btn btn-dark mt-2 w-75"
+                        th:href="@{/events/delete/{id}(id=${event.id})}"
+                >Удалить</a
                 >
+                <a
+                        sec:authorize="hasAuthority('CLIENT_ROLE')"
+                        class="btn btn-secondary"
+                        th:if="${(!userEventList.contains(event.id)) && (event.participants.size()<event.maxClients)}"
+                        th:href="@{/events/join/{id}(id=${event.id})}"
+                >Записаться</a>
+                <a
+                        sec:authorize="hasAuthority('CLIENT_ROLE')"
+                        class="btn btn-danger"
+                        th:if="${userEventList.contains(event.id)}"
+                        th:href="@{/events/leave/{id}(id=${event.id})}"
+                >Отписаться</a>
               </div>
             </div>
           </div>
@@ -205,17 +229,29 @@
                   th:text="${event.participants.size()+'/'+event.maxClients}"
                 ></p>
                 <a
-                  sec:authorize="hasAuthority('MODERATOR_ROLE')"
-                  class="btn btn-danger"
-                  th:href="@{/events/edit/{id}(id=${event.id})}"
-                  >Редактировать</a
+                        sec:authorize="hasAuthority('MODERATOR_ROLE')"
+                        class="btn btn-info w-75"
+                        th:href="@{/events/edit/{id}(id=${event.id})}"
+                >Редактировать</a
                 >
                 <a
-                  sec:authorize="hasAuthority('CLIENT_ROLE')"
-                  class="btn btn-secondary"
-                  th:href="@{/events/check/{id}(id=${event.id})}"
-                  >Записаться</a
+                        sec:authorize="hasAuthority('MODERATOR_ROLE')"
+                        class="btn btn-dark mt-2 w-75"
+                        th:href="@{/events/delete/{id}(id=${event.id})}"
+                >Удалить</a
                 >
+                <a
+                        sec:authorize="hasAuthority('CLIENT_ROLE')"
+                        class="btn btn-secondary"
+                        th:if="${(!userEventList.contains(event.id)) && (event.participants.size()<event.maxClients)}"
+                        th:href="@{/events/join/{id}(id=${event.id})}"
+                >Записаться</a>
+                <a
+                        sec:authorize="hasAuthority('CLIENT_ROLE')"
+                        class="btn btn-danger"
+                        th:if="${userEventList.contains(event.id)}"
+                        th:href="@{/events/leave/{id}(id=${event.id})}"
+                >Отписаться</a>
               </div>
             </div>
           </div>
@@ -238,17 +274,29 @@
                   th:text="${event.participants.size()+'/'+event.maxClients}"
                 ></p>
                 <a
-                  sec:authorize="hasAuthority('MODERATOR_ROLE')"
-                  class="btn btn-danger"
-                  th:href="@{/events/edit/{id}(id=${event.id})}"
-                  >Редактировать</a
+                        sec:authorize="hasAuthority('MODERATOR_ROLE')"
+                        class="btn btn-info w-75"
+                        th:href="@{/events/edit/{id}(id=${event.id})}"
+                >Редактировать</a
                 >
                 <a
-                  sec:authorize="hasAuthority('CLIENT_ROLE')"
-                  class="btn btn-secondary"
-                  th:href="@{/events/check/{id}(id=${event.id})}"
-                  >Записаться</a
+                        sec:authorize="hasAuthority('MODERATOR_ROLE')"
+                        class="btn btn-dark mt-2 w-75"
+                        th:href="@{/events/delete/{id}(id=${event.id})}"
+                >Удалить</a
                 >
+                <a
+                        sec:authorize="hasAuthority('CLIENT_ROLE')"
+                        class="btn btn-secondary"
+                        th:if="${(!userEventList.contains(event.id)) && (event.participants.size()<event.maxClients)}"
+                        th:href="@{/events/join/{id}(id=${event.id})}"
+                >Записаться</a>
+                <a
+                        sec:authorize="hasAuthority('CLIENT_ROLE')"
+                        class="btn btn-danger"
+                        th:if="${userEventList.contains(event.id)}"
+                        th:href="@{/events/leave/{id}(id=${event.id})}"
+                >Отписаться</a>
               </div>
             </div>
           </div>
@@ -271,17 +319,29 @@
                   th:text="${event.participants.size()+'/'+event.maxClients}"
                 ></p>
                 <a
-                  sec:authorize="hasAuthority('MODERATOR_ROLE')"
-                  class="btn btn-danger"
-                  th:href="@{/events/edit/{id}(id=${event.id})}"
-                  >Редактировать</a
+                        sec:authorize="hasAuthority('MODERATOR_ROLE')"
+                        class="btn btn-info w-75"
+                        th:href="@{/events/edit/{id}(id=${event.id})}"
+                >Редактировать</a
                 >
                 <a
-                  sec:authorize="hasAuthority('CLIENT_ROLE')"
-                  class="btn btn-secondary"
-                  th:href="@{/events/check/{id}(id=${event.id})}"
-                  >Записаться</a
+                        sec:authorize="hasAuthority('MODERATOR_ROLE')"
+                        class="btn btn-dark mt-2 w-75"
+                        th:href="@{/events/delete/{id}(id=${event.id})}"
+                >Удалить</a
                 >
+                <a
+                        sec:authorize="hasAuthority('CLIENT_ROLE')"
+                        class="btn btn-secondary"
+                        th:if="${(!userEventList.contains(event.id)) && (event.participants.size()<event.maxClients)}"
+                        th:href="@{/events/join/{id}(id=${event.id})}"
+                >Записаться</a>
+                <a
+                        sec:authorize="hasAuthority('CLIENT_ROLE')"
+                        class="btn btn-danger"
+                        th:if="${userEventList.contains(event.id)}"
+                        th:href="@{/events/leave/{id}(id=${event.id})}"
+                >Отписаться</a>
               </div>
             </div>
           </div>
@@ -304,17 +364,29 @@
                   th:text="${event.participants.size()+'/'+event.maxClients}"
                 ></p>
                 <a
-                  sec:authorize="hasAuthority('MODERATOR_ROLE')"
-                  class="btn btn-danger"
-                  th:href="@{/events/edit/{id}(id=${event.id})}"
-                  >Редактировать</a
+                        sec:authorize="hasAuthority('MODERATOR_ROLE')"
+                        class="btn btn-info w-75"
+                        th:href="@{/events/edit/{id}(id=${event.id})}"
+                >Редактировать</a
                 >
                 <a
-                  sec:authorize="hasAuthority('CLIENT_ROLE')"
-                  class="btn btn-secondary"
-                  th:href="@{/events/check/{id}(id=${event.id})}"
-                  >Записаться</a
+                        sec:authorize="hasAuthority('MODERATOR_ROLE')"
+                        class="btn btn-dark mt-2 w-75"
+                        th:href="@{/events/delete/{id}(id=${event.id})}"
+                >Удалить</a
                 >
+                <a
+                        sec:authorize="hasAuthority('CLIENT_ROLE')"
+                        class="btn btn-secondary"
+                        th:if="${(!userEventList.contains(event.id)) && (event.participants.size()<event.maxClients)}"
+                        th:href="@{/events/join/{id}(id=${event.id})}"
+                >Записаться</a>
+                <a
+                        sec:authorize="hasAuthority('CLIENT_ROLE')"
+                        class="btn btn-danger"
+                        th:if="${userEventList.contains(event.id)}"
+                        th:href="@{/events/leave/{id}(id=${event.id})}"
+                >Отписаться</a>
               </div>
             </div>
           </div>
@@ -337,17 +409,29 @@
                   th:text="${event.participants.size()+'/'+event.maxClients}"
                 ></p>
                 <a
-                  sec:authorize="hasAuthority('MODERATOR_ROLE')"
-                  class="btn btn-danger"
-                  th:href="@{/events/edit/{id}(id=${event.id})}"
-                  >Редактировать</a
+                        sec:authorize="hasAuthority('MODERATOR_ROLE')"
+                        class="btn btn-info w-75"
+                        th:href="@{/events/edit/{id}(id=${event.id})}"
+                >Редактировать</a
                 >
                 <a
-                  sec:authorize="hasAuthority('CLIENT_ROLE')"
-                  class="btn btn-secondary"
-                  th:href="@{/events/check/{id}(id=${event.id})}"
-                  >Записаться</a
+                        sec:authorize="hasAuthority('MODERATOR_ROLE')"
+                        class="btn btn-dark mt-2 w-75"
+                        th:href="@{/events/delete/{id}(id=${event.id})}"
+                >Удалить</a
                 >
+                <a
+                        sec:authorize="hasAuthority('CLIENT_ROLE')"
+                        class="btn btn-secondary"
+                        th:if="${(!userEventList.contains(event.id)) && (event.participants.size()<event.maxClients)}"
+                        th:href="@{/events/join/{id}(id=${event.id})}"
+                >Записаться</a>
+                <a
+                        sec:authorize="hasAuthority('CLIENT_ROLE')"
+                        class="btn btn-danger"
+                        th:if="${userEventList.contains(event.id)}"
+                        th:href="@{/events/leave/{id}(id=${event.id})}"
+                >Отписаться</a>
               </div>
             </div>
           </div>
