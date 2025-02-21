@@ -1,351 +1,362 @@
 <!DOCTYPE html>
 <html
-        lang="ru"
-        xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:th="http://www.thymeleaf.org"
-        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+  lang="ru"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.w3.org/1999/xhtml"
 >
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FitZal - Мероприятия</title>
-  <link
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          rel="stylesheet"
-  />
-  <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-  />
-  <style>
-    body {
-      background-color: #f8f9fa;
-    }
-    .header {
-      background-color: #6d7985;
-      color: white;
-      padding: 20px 0;
-      text-align: center;
-    }
-    .section {
-      margin: 30px 0;
-    }
-    footer {
-      background-color: #343a40;
-      color: white;
-    }
-    h5 {
-      margin-bottom: 30px;
-    }
-    .event-card {
-      height: 250px;
-      margin-bottom: 10px;
-      border-radius: 10px;
-      overflow: hidden;
-      transition: transform 0.2s;
-    }
-    .event-card:hover {
-      transform: scale(1.05);
-    }
-  </style>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/">FitZal</a>
-  <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Переключить навигацию"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/">Главная</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/about">О нас</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/news">Новости</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/trainers">Тренера</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Мероприятия</a>
-      </li>
-      <li sec:authorize="!isAuthenticated()" class="nav-item">
-        <a class="nav-link" href="/login">Войти</a>
-      </li>
-      <li sec:authorize="isAuthenticated()" class="nav-item">
-        <a class="nav-link" href="/logout">Выйти</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-<div class="container-fluid mt-4">
-  <div class="row">
-    <div class="col text-center">
-      <h5>Понедельник</h5>
-      <div th:each="event : ${events[0]}">
-        <div class="card event-card">
-          <div class="card-body">
-            <h6 class="card-title" th:text="${event.time}"></h6>
-            <h6
-                    class="card-subtitle mb-2 text-muted"
-                    th:text="${event.title}"
-            ></h6>
-            <p class="card-text" th:text="${event.description}"></p>
-            <p class="card-text" th:text="${event.trainer.firstName}"></p>
-            <p class="card-text">
-              Участников: <span th:text="${event.participants.size()}"></span>/<span th:text="${event.maxClients}"></span>
-            </p>
-            <!-- Кнопка "Записаться" для CLIENT_ROLE -->
-            <form sec:authorize="hasAuthority('CLIENT_ROLE')"
-                  th:action="@{/events/join/{eventId}(eventId=${event.id})}"
-                  method="post">
-              <button th:if="${!userEventList.contains(event.id)}" type="submit" class="btn btn-secondary"
-                      th:disabled="${event.participants.size() >= event.maxClients}">
-                Записаться
-              </button>
-            </form>
-            <!-- Кнопка "Редактировать" для MODERATOR_ROLE -->
-            <a sec:authorize="hasAuthority('MODERATOR_ROLE')"
-               class="btn btn-danger mt-2"
-               th:href="@{/events/edit/{id}(id=${event.id})}">
-              Редактировать
-            </a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FitZal</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .header {
+        background-color: #6d7985;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+      }
+      .section {
+        margin: 30px 0;
+      }
+      footer {
+        background-color: #343a40;
+        color: white;
+      }
+      h5 {
+        margin-bottom: 30px;
+      }
+      .event-card {
+        height: 300px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.2s;
+      }
+      .event-card:hover {
+        transform: scale(1.05);
+      }
+      .slide-in-left {
+        -webkit-animation: slide-in-left 0.5s
+          cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        animation: slide-in-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+      }
+      @-webkit-keyframes slide-in-left {
+        0% {
+          -webkit-transform: translateX(-1000px);
+          transform: translateX(-1000px);
+          opacity: 0;
+        }
+        100% {
+          -webkit-transform: translateX(0);
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      @keyframes slide-in-left {
+        0% {
+          -webkit-transform: translateX(-1000px);
+          transform: translateX(-1000px);
+          opacity: 0;
+        }
+        100% {
+          -webkit-transform: translateX(0);
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">FitZal</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Переключить навигацию"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Главная</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">О нас</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/news">Новости</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/trainers">Тренера</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Мероприятия</a>
+          </li>
+          <li sec:authorize="!isAuthenticated()" class="nav-item">
+            <a class="nav-link" href="/login">Войти</a>
+          </li>
+          <li sec:authorize="isAuthenticated()" class="nav-item">
+            <a class="nav-link" href="/logout"
+              >Выйти (<span sec:authentication="name">UUser</span>)</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="slide-in-left container-fluid mt-4">
+      <div class="row">
+        <div class="col text-center">
+          <h5>Понедельник</h5>
+          <div th:each="event : ${events[0]}">
+            <div class="card event-card">
+              <div class="card-body">
+                <h6 class="card-title" th:text="${event.time}"></h6>
+                <h6
+                  class="card-subtitle mb-2 text-muted"
+                  th:text="${event.title}"
+                ></h6>
+                <p class="card-text" th:text="${event.description}"></p>
+                <p class="card-text" th:text="${event.trainer.firstName}"></p>
+                <p
+                  class="card-text"
+                  th:text="${event.participants.size()+'/'+event.maxClients}"
+                ></p>
+                <a
+                  sec:authorize="hasAuthority('MODERATOR_ROLE')"
+                  class="btn btn-danger"
+                  th:href="@{/events/edit/{id}(id=${event.id})}"
+                  >Редактировать</a
+                >
+                <a
+                  sec:authorize="hasAuthority('CLIENT_ROLE')"
+                  class="btn btn-secondary"
+                  th:href="@{/events/check/{id}(id=${event.id})}"
+                  >Записаться</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col text-center">
+          <h5>Вторник</h5>
+          <div th:each="event : ${events[1]}">
+            <div class="card event-card">
+              <div class="card-body">
+                <h6 class="card-title" th:text="${event.time}"></h6>
+                <h6
+                  class="card-subtitle mb-2 text-muted"
+                  th:text="${event.title}"
+                ></h6>
+                <p class="card-text" th:text="${event.description}"></p>
+                <p class="card-text" th:text="${event.trainer.firstName}"></p>
+                <p
+                  class="card-text"
+                  th:text="${event.participants.size()+'/'+event.maxClients}"
+                ></p>
+                <a
+                  sec:authorize="hasAuthority('MODERATOR_ROLE')"
+                  class="btn btn-danger"
+                  th:href="@{/events/edit/{id}(id=${event.id})}"
+                  >Редактировать</a
+                >
+                <a
+                  sec:authorize="hasAuthority('CLIENT_ROLE')"
+                  class="btn btn-secondary"
+                  th:href="@{/events/check/{id}(id=${event.id})}"
+                  >Записаться</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col text-center">
+          <h5>Среда</h5>
+          <div th:each="event : ${events[2]}">
+            <div class="card event-card">
+              <div class="card-body">
+                <h6 class="card-title" th:text="${event.time}"></h6>
+                <h6
+                  class="card-subtitle mb-2 text-muted"
+                  th:text="${event.title}"
+                ></h6>
+                <p class="card-text" th:text="${event.description}"></p>
+                <p class="card-text" th:text="${event.trainer.firstName}"></p>
+                <p
+                  class="card-text"
+                  th:text="${event.participants.size()+'/'+event.maxClients}"
+                ></p>
+                <a
+                  sec:authorize="hasAuthority('MODERATOR_ROLE')"
+                  class="btn btn-danger"
+                  th:href="@{/events/edit/{id}(id=${event.id})}"
+                  >Редактировать</a
+                >
+                <a
+                  sec:authorize="hasAuthority('CLIENT_ROLE')"
+                  class="btn btn-secondary"
+                  th:href="@{/events/check/{id}(id=${event.id})}"
+                  >Записаться</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col text-center">
+          <h5>Четверг</h5>
+          <div th:each="event : ${events[3]}">
+            <div class="card event-card">
+              <div class="card-body">
+                <h6 class="card-title" th:text="${event.time}"></h6>
+                <h6
+                  class="card-subtitle mb-2 text-muted"
+                  th:text="${event.title}"
+                ></h6>
+                <p class="card-text" th:text="${event.description}"></p>
+                <p class="card-text" th:text="${event.trainer.firstName}"></p>
+                <p
+                  class="card-text"
+                  th:text="${event.participants.size()+'/'+event.maxClients}"
+                ></p>
+                <a
+                  sec:authorize="hasAuthority('MODERATOR_ROLE')"
+                  class="btn btn-danger"
+                  th:href="@{/events/edit/{id}(id=${event.id})}"
+                  >Редактировать</a
+                >
+                <a
+                  sec:authorize="hasAuthority('CLIENT_ROLE')"
+                  class="btn btn-secondary"
+                  th:href="@{/events/check/{id}(id=${event.id})}"
+                  >Записаться</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col text-center">
+          <h5>Пятница</h5>
+          <div th:each="event : ${events[4]}">
+            <div class="card event-card">
+              <div class="card-body">
+                <h6 class="card-title" th:text="${event.time}"></h6>
+                <h6
+                  class="card-subtitle mb-2 text-muted"
+                  th:text="${event.title}"
+                ></h6>
+                <p class="card-text" th:text="${event.description}"></p>
+                <p class="card-text" th:text="${event.trainer.firstName}"></p>
+                <p
+                  class="card-text"
+                  th:text="${event.participants.size()+'/'+event.maxClients}"
+                ></p>
+                <a
+                  sec:authorize="hasAuthority('MODERATOR_ROLE')"
+                  class="btn btn-danger"
+                  th:href="@{/events/edit/{id}(id=${event.id})}"
+                  >Редактировать</a
+                >
+                <a
+                  sec:authorize="hasAuthority('CLIENT_ROLE')"
+                  class="btn btn-secondary"
+                  th:href="@{/events/check/{id}(id=${event.id})}"
+                  >Записаться</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col text-center">
+          <h5>Суббота</h5>
+          <div th:each="event : ${events[5]}">
+            <div class="card event-card">
+              <div class="card-body">
+                <h6 class="card-title" th:text="${event.time}"></h6>
+                <h6
+                  class="card-subtitle mb-2 text-muted"
+                  th:text="${event.title}"
+                ></h6>
+                <p class="card-text" th:text="${event.description}"></p>
+                <p class="card-text" th:text="${event.trainer.firstName}"></p>
+                <p
+                  class="card-text"
+                  th:text="${event.participants.size()+'/'+event.maxClients}"
+                ></p>
+                <a
+                  sec:authorize="hasAuthority('MODERATOR_ROLE')"
+                  class="btn btn-danger"
+                  th:href="@{/events/edit/{id}(id=${event.id})}"
+                  >Редактировать</a
+                >
+                <a
+                  sec:authorize="hasAuthority('CLIENT_ROLE')"
+                  class="btn btn-secondary"
+                  th:href="@{/events/check/{id}(id=${event.id})}"
+                  >Записаться</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col text-center">
+          <h5>Воскресенье</h5>
+          <div th:each="event : ${events[6]}">
+            <div class="card event-card">
+              <div class="card-body">
+                <h6 class="card-title" th:text="${event.time}"></h6>
+                <h6
+                  class="card-subtitle mb-2 text-muted"
+                  th:text="${event.title}"
+                ></h6>
+                <p class="card-text" th:text="${event.description}"></p>
+                <p class="card-text" th:text="${event.trainer.firstName}"></p>
+                <p
+                  class="card-text"
+                  th:text="${event.participants.size()+'/'+event.maxClients}"
+                ></p>
+                <a
+                  sec:authorize="hasAuthority('MODERATOR_ROLE')"
+                  class="btn btn-danger"
+                  th:href="@{/events/edit/{id}(id=${event.id})}"
+                  >Редактировать</a
+                >
+                <a
+                  sec:authorize="hasAuthority('CLIENT_ROLE')"
+                  class="btn btn-secondary"
+                  th:href="@{/events/check/{id}(id=${event.id})}"
+                  >Записаться</a
+                >
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Вторник -->
-    <div class="col text-center">
-      <h5>Вторник</h5>
-      <div th:each="event : ${events[1]}">
-        <div class="card event-card">
-          <div class="card-body">
-            <h6 class="card-title" th:text="${event.time}"></h6>
-            <h6
-                    class="card-subtitle mb-2 text-muted"
-                    th:text="${event.title}"
-            ></h6>
-            <p class="card-text" th:text="${event.description}"></p>
-            <p class="card-text" th:text="${event.trainer.firstName}"></p>
-            <p class="card-text">
-              Участников: <span th:text="${event.participants.size()}"></span>/<span th:text="${event.maxClients}"></span>
-            </p>
-            <!-- Кнопка "Записаться" для CLIENT_ROLE -->
-            <form sec:authorize="hasAuthority('CLIENT_ROLE')"
-                  th:action="@{/events/join/{eventId}(eventId=${event.id})}"
-                  method="post">
-              <button type="submit" class="btn btn-secondary"
-                      th:disabled="${event.participants.size() >= event.maxClients}">
-                Записаться
-              </button>
-            </form>
-            <!-- Кнопка "Редактировать" для MODERATOR_ROLE -->
-            <a sec:authorize="hasAuthority('MODERATOR_ROLE')"
-               class="btn btn-danger mt-2"
-               th:href="@{/events/edit/{id}(id=${event.id})}">
-              Редактировать
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Среда -->
-    <div class="col text-center">
-      <h5>Среда</h5>
-      <div th:each="event : ${events[2]}">
-        <div class="card event-card">
-          <div class="card-body">
-            <h6 class="card-title" th:text="${event.time}"></h6>
-            <h6
-                    class="card-subtitle mb-2 text-muted"
-                    th:text="${event.title}"
-            ></h6>
-            <p class="card-text" th:text="${event.description}"></p>
-            <p class="card-text" th:text="${event.trainer.firstName}"></p>
-            <p class="card-text">
-              Участников: <span th:text="${event.participants.size()}"></span>/<span th:text="${event.maxClients}"></span>
-            </p>
-            <!-- Кнопка "Записаться" для CLIENT_ROLE -->
-            <form sec:authorize="hasAuthority('CLIENT_ROLE')"
-                  th:action="@{/events/join/{eventId}(eventId=${event.id})}"
-                  method="post">
-              <button type="submit" class="btn btn-secondary"
-                      th:disabled="${event.participants.size() >= event.maxClients}">
-                Записаться
-              </button>
-            </form>
-            <!-- Кнопка "Редактировать" для MODERATOR_ROLE -->
-            <a sec:authorize="hasAuthority('MODERATOR_ROLE')"
-               class="btn btn-danger mt-2"
-               th:href="@{/events/edit/{id}(id=${event.id})}">
-              Редактировать
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Четверг -->
-    <div class="col text-center">
-      <h5>Четверг</h5>
-      <div th:each="event : ${events[3]}">
-        <div class="card event-card">
-          <div class="card-body">
-            <h6 class="card-title" th:text="${event.time}"></h6>
-            <h6
-                    class="card-subtitle mb-2 text-muted"
-                    th:text="${event.title}"
-            ></h6>
-            <p class="card-text" th:text="${event.description}"></p>
-            <p class="card-text" th:text="${event.trainer.firstName}"></p>
-            <p class="card-text">
-              Участников: <span th:text="${event.participants.size()}"></span>/<span th:text="${event.maxClients}"></span>
-            </p>
-            <!-- Кнопка "Записаться" для CLIENT_ROLE -->
-            <form sec:authorize="hasAuthority('CLIENT_ROLE')"
-                  th:action="@{/events/join/{eventId}(eventId=${event.id})}"
-                  method="post">
-              <button type="submit" class="btn btn-secondary"
-                      th:disabled="${event.participants.size() >= event.maxClients}">
-                Записаться
-              </button>
-            </form>
-            <!-- Кнопка "Редактировать" для MODERATOR_ROLE -->
-            <a sec:authorize="hasAuthority('MODERATOR_ROLE')"
-               class="btn btn-danger mt-2"
-               th:href="@{/events/edit/{id}(id=${event.id})}">
-              Редактировать
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Пятница -->
-    <div class="col text-center">
-      <h5>Пятница</h5>
-      <div th:each="event : ${events[4]}">
-        <div class="card event-card">
-          <div class="card-body">
-            <h6 class="card-title" th:text="${event.time}"></h6>
-            <h6
-                    class="card-subtitle mb-2 text-muted"
-                    th:text="${event.title}"
-            ></h6>
-            <p class="card-text" th:text="${event.description}"></p>
-            <p class="card-text" th:text="${event.trainer.firstName}"></p>
-            <p class="card-text">
-              Участников: <span th:text="${event.participants.size()}"></span>/<span th:text="${event.maxClients}"></span>
-            </p>
-            <!-- Кнопка "Записаться" для CLIENT_ROLE -->
-            <form sec:authorize="hasAuthority('CLIENT_ROLE')"
-                  th:action="@{/events/join/{eventId}(eventId=${event.id})}"
-                  method="post">
-              <button type="submit" class="btn btn-secondary"
-                      th:disabled="${event.participants.size() >= event.maxClients}">
-                Записаться
-              </button>
-            </form>
-            <!-- Кнопка "Редактировать" для MODERATOR_ROLE -->
-            <a sec:authorize="hasAuthority('MODERATOR_ROLE')"
-               class="btn btn-danger mt-2"
-               th:href="@{/events/edit/{id}(id=${event.id})}">
-              Редактировать
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Суббота -->
-    <div class="col text-center">
-      <h5>Суббота</h5>
-      <div th:each="event : ${events[5]}">
-        <div class="card event-card">
-          <div class="card-body">
-            <h6 class="card-title" th:text="${event.time}"></h6>
-            <h6
-                    class="card-subtitle mb-2 text-muted"
-                    th:text="${event.title}"
-            ></h6>
-            <p class="card-text" th:text="${event.description}"></p>
-            <p class="card-text" th:text="${event.trainer.firstName}"></p>
-            <p class="card-text">
-              Участников: <span th:text="${event.participants.size()}"></span>/<span th:text="${event.maxClients}"></span>
-            </p>
-            <!-- Кнопка "Записаться" для CLIENT_ROLE -->
-            <form sec:authorize="hasAuthority('CLIENT_ROLE')"
-                  th:action="@{/events/join/{eventId}(eventId=${event.id})}"
-                  method="post">
-              <button type="submit" class="btn btn-secondary"
-                      th:disabled="${event.participants.size() >= event.maxClients}">
-                Записаться
-              </button>
-            </form>
-            <!-- Кнопка "Редактировать" для MODERATOR_ROLE -->
-            <a sec:authorize="hasAuthority('MODERATOR_ROLE')"
-               class="btn btn-danger mt-2"
-               th:href="@{/events/edit/{id}(id=${event.id})}">
-              Редактировать
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Воскресенье -->
-    <div class="col text-center">
-      <h5>Воскресенье</h5>
-      <div th:each="event : ${events[6]}">
-        <div class="card event-card">
-          <div class="card-body">
-            <h6 class="card-title" th:text="${event.time}"></h6>
-            <h6
-                    class="card-subtitle mb-2 text-muted"
-                    th:text="${event.title}"
-            ></h6>
-            <p class="card-text" th:text="${event.description}"></p>
-            <p class="card-text" th:text="${event.trainer.firstName}"></p>
-            <p class="card-text">
-              Участников: <span th:text="${event.participants.size()}"></span>/<span th:text="${event.maxClients}"></span>
-            </p>
-            <!-- Кнопка "Записаться" для CLIENT_ROLE -->
-            <form sec:authorize="hasAuthority('CLIENT_ROLE')"
-                  th:action="@{/events/join/{eventId}(eventId=${event.id})}"
-                  method="post">
-              <button type="submit" class="btn btn-secondary"
-                      th:disabled="${event.participants.size() >= event.maxClients}">
-                Записаться
-              </button>
-            </form>
-            <!-- Кнопка "Редактировать" для MODERATOR_ROLE -->
-            <a sec:authorize="hasAuthority('MODERATOR_ROLE')"
-               class="btn btn-danger mt-2"
-               th:href="@{/events/edit/{id}(id=${event.id})}">
-              Редактировать
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
 </html>
