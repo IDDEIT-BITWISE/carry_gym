@@ -46,9 +46,46 @@
         background-color: #343a40;
         color: white;
       }
+      .puff-in-center {
+          -webkit-animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+                  animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+      }
+      @-webkit-keyframes puff-in-center {
+  0% {
+    -webkit-transform: scale(2);
+            transform: scale(2);
+    -webkit-filter: blur(4px);
+            filter: blur(4px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    opacity: 1;
+  }
+}
+@keyframes puff-in-center {
+  0% {
+    -webkit-transform: scale(2);
+            transform: scale(2);
+    -webkit-filter: blur(4px);
+            filter: blur(4px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    opacity: 1;
+  }
+}
+
     </style>
   </head>
-  <body>
+  <body style='overflow-x:hidden;'>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="/">FitZal</a>
       <button
@@ -91,8 +128,8 @@
 
     <div class="hero">
       <div>
-        <h1>FitZal - зал для простых пацанов</h1>
-        <p>Разбудите свою силу и преобразите свое тело!</p>
+        <h1 class="puff-in-center">FitZal - зал для простых пацанов</h1>
+        <p class="puff-in-center">Разбуди свою силу и преобрази свое тело!</p>
         <a
           sec:authorize="!isAuthenticated()"
           href="/login"
