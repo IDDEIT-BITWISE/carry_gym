@@ -35,11 +35,11 @@ VALUES
 
     ('HIIT', 'Intense circuit training', '08:30', 6, 1),
     ('Zumba', 'Latin dance workout', '10:00', 6, 2),
-    ('Spinning', 'Endurance cycling', '19:00', 6, 3),
+    ('Spinning', 'Endurance cycling', '19:00', 5, 3),
 
     ('Yoga Class', 'Deep stretch and balance', '09:30', 7, 4),
-    ('Bodybuilding', 'Full-body strength workout', '16:00', 7, 1),
-    ('CrossFit', 'Agility and power training', '18:30', 7, 2);
+    ('Bodybuilding', 'Full-body strength workout', '16:00', 1, 1),
+    ('CrossFit', 'Agility and power training', '18:30', 4, 2);
 
 
 

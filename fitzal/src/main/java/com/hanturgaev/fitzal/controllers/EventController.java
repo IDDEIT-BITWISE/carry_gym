@@ -45,4 +45,16 @@ public class EventController {
         return "events";
     }
 
+    @GetMapping("/edit/{id}")
+    public String editEvent(@PathVariable("id") Long id) {
+
+        return "editEvent";
+    }
+
+    @GetMapping("/check/{id}")
+    public String checkEvent(@PathVariable("id") Long id) {
+
+        return "checked!!";
+    }
+
 }
