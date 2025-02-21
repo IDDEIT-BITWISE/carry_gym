@@ -13,6 +13,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -72,6 +73,15 @@ public class EventService {
         }
 
         return result;
+    }
+
+    @Transactional
+    public void updateEvent(Event event) {
+        eventRepository.save(event);
+    }
+
+    public Optional<Event> getEventById(Long id) {
+        return eventRepository.findById(id);
     }
 
 }
