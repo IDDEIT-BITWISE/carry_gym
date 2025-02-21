@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -82,6 +83,33 @@ public class EventService {
 
     public Optional<Event> getEventById(Long id) {
         return eventRepository.findById(id);
+    }
+    @Transactional
+    public void leaveEvent(Long eventId, Long userId) {
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new RuntimeException("Событие не найдено"));
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("Пользователь не найден"));
+
+        if (!event.getParticipants().contains(user)) {
+            throw new RuntimeException("Пользователь не записан на это событие");
+        }
+
+        event.getParticipants().remove(user);
+        eventRepository.save(event);
+    }
+
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    public List<Long> getEventsByUserId(Long id) {
+        List<Event> events = eventRepository.findByParticipantsId(id);
+        List<Long> eventIds = events.stream()
+                .map(Event::getId) // Преобразуем каждый Event в его id
+                .collect(Collectors.toList());
+        return eventIds;
     }
 
 }

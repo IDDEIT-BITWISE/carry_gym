@@ -8,7 +8,7 @@ import lombok.Setter;
 
 import java.util.List;
 
-@Embeddable // Указываем, что это встраиваемый класс
+@Embeddable
 @Getter
 @Setter
 @AllArgsConstructor
