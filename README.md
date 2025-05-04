@@ -1,1 +1,1 @@
-Калым 
+Spring + Thymeleaf + PostgreSQL
